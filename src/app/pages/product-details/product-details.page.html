@@ -1,0 +1,76 @@
+<ion-content>
+  @if (produto) {
+  <main>
+    <div class="carousel">
+      <ion-list class="gallery-thumbs">
+
+        @for (image of produto.images; track image) {
+          <ion-item lines="none" (click)="changeSwiperIndex(image)">
+            <img [src]="image" alt="">
+          </ion-item>
+        }
+
+      </ion-list>
+
+      <div class="image-focus gallery-top" >
+        <swiper-container #swiper class="swiper-container" id="mySwiper" (slidechange)="swiperSlideChange($event)"
+        (afterInit)="swiperReady()"> 
+
+          @for (image of produto.images; track image) {
+            <swiper-slide>
+              <ion-item>
+                <img [src]="image" alt="">
+              </ion-item>
+            </swiper-slide>
+          }
+          <div class="swiper-button-next swiper-button-white"></div>
+        </swiper-container>
+      </div>
+    </div>
+
+    <div class="product-details">
+      <h1>
+        {{produto.nome}}
+      </h1>
+
+      <div>
+        <p>Categoria: <span> {{produto.categoria}}</span></p>
+
+        <div class="stars">
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star-outline"></ion-icon>
+
+          <p>(53)</p>
+        </div>
+      </div>
+
+      <h4>Produto Disponivel</h4>
+
+      <div id="buy">
+        <div id="price">
+          <h2> {{produto.preco | currency:'BRL'}}</h2>
+          <div>
+            <span>Em até x vezes sem juros </span>
+            <a href="" style="margin: 0 5px;">ver parcelas</a>
+          </div>
+        </div>
+
+        <button>
+          <ion-icon name="cart"></ion-icon>
+          <div>
+            <p>Comprar</p>
+            <span>adicionar ao carrinho</span>
+          </div>
+        </button>
+      </div>
+
+      <h3>Descrição</h3>
+
+      <p> {{produto.descricao}} </p>
+    </div>
+  </main>
+  }
+</ion-content>

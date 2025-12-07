@@ -1,0 +1,46 @@
+<ion-content [fullscreen]="true">
+  <main>
+    <div class="container">
+      <div class="container-topo">
+        <img id="cachorro-topo" src="./assets/cachorro-login.png" alt=""  [ngClass]="{'selecionado': isInputSelecionado}">
+        <div id="first-child">
+          <span></span>
+        </div>
+        <div>
+          <span></span>
+        </div>
+      </div>
+      <div class="container-content">
+        <div id="container-title">
+          <img id="pet-logo" src="./assets/pet-logo.png" alt="" routerLink="/home">
+          <h2>Cadastro</h2>
+        </div>
+        <form action="" [formGroup]="signupForm">
+          <div>
+            <div class="item-input">
+              <label for="">nome de usuário</label>
+              <ion-input formControlName="username"></ion-input>
+            </div>
+            <div class="item-input">
+              <label for="">e-mail</label>
+              <ion-input type="e-mail" formControlName="email"></ion-input>
+            </div>
+            <div class="item-input">
+              <label for="">senha</label>
+              <ion-input type="password" formControlName="password" (ionFocus)="inputFocus()" (ionBlur)="inputBlur()"
+              [(ngModel)]="inputValue"></ion-input>
+            </div>
+          </div>
+          <div class="container-entrar">
+            <ion-button (click)="newUser()"><p>Cadastrar</p></ion-button>
+
+            <ion-text>
+              <p routerLink="/login">Já possuo uma conta</p>
+            </ion-text>
+          </div>
+        </form>
+      </div>
+    </div>
+  </main>
+ 
+</ion-content>

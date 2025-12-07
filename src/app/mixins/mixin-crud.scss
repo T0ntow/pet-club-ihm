@@ -1,0 +1,240 @@
+// Mixin to reset margin and padding for all elements
+@mixin reset-box-model {
+    margin: 0;
+    padding: 0;
+}
+
+@mixin font-snipplet {
+    font-family: "sniglet", sans-serif;
+}
+
+@mixin flex-container {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+@mixin title {
+    color: #000;
+    font-size: 1.2rem;
+}
+
+@mixin button-styles {
+    background-color: #2499c4;
+    height: 50px;
+    width: 50px;
+    border-radius: 0 15px 15px 0;
+
+    @media screen and (max-width: 900px) {
+        height: 35px;
+    }
+
+    ion-icon {
+        font-size: 1.5rem;
+        color: #000;
+    }
+}
+
+@mixin search-bar-styles {
+    width: 80%;
+    border-radius: 15px 0 0 15px;
+    height: 50px;
+    background-color: #fff;
+    outline: none;
+    border: none;
+    text-indent: 10px;
+
+    @media screen and (max-width: 900px) {
+        height: 35px;
+    }
+
+    @media screen and (max-width: 500px) {
+        width: 100%;
+    }
+
+    input {
+        @include reset-box-model;
+        height: 100%;
+        border-radius: inherit; // Inherit the border-radius from the parent
+    }
+
+    ion-icon {
+        font-size: 1.5rem;
+        color: #000;
+    }
+}
+
+@mixin generic-button {
+    height: 50px;
+    border-radius: 15px;
+    max-width: 100px;
+    background: #2499c4;
+    color: #000;
+    font-weight: bold;
+    font-size: .9rem;
+    flex-wrap: wrap;
+
+    @media screen and (max-width: 900px) {
+        height: 35px;
+        font-size: 0.9rem;
+    }
+
+    :hover {
+        transition: .2s;
+        color: #727272;
+    }
+}
+
+@mixin list-item-styles {
+    ion-button {
+        border-radius: 5px;
+        width: 95px;
+
+        display: flex;
+        flex-direction: column;
+
+        p {
+            font-size: 10px;
+        }
+
+        ion-icon {
+            min-width: 18px;
+            width: 18px;
+        }
+    }
+
+    .remover {
+        background-color: #dd5e5e;
+    }
+
+    .alterar {
+        background-color: #5ab0d7;
+    }
+}
+
+@mixin odd-list-item {
+    ion-row {
+        @include flex-container;
+
+        flex-wrap: nowrap;
+        width: 100%;
+        border-radius: 5px;
+        height: 50px;
+
+        padding: 10px;
+
+        ion-col{
+            display: flex;
+            text-indent: 10px;
+
+            width: 200px;
+            min-width: 200px;
+            max-width: 200px;
+            margin: 5px;
+            border-radius: 10px;
+            height: 45px;
+            align-items: center;
+            background-color: #bebebe;
+            // border: 1px solid rgb(128, 128, 128);
+            font-size: 14px;
+
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+
+        .functions-col {
+        }
+    }
+}
+
+* {
+    @include reset-box-model;
+}
+
+ion-content {
+    --background: var(--background-color);
+}
+
+.header {
+    @include flex-container;
+    @include font-snipplet;
+
+    h1 {
+        @include title;
+    }
+
+    background-color: #fff;
+}
+
+main {
+    @include font-snipplet;
+    margin-top: 5vh;
+
+    div {
+        display: flex;
+        flex-direction: row;
+        // @include flex-container;
+        padding: 0 20px;
+        margin-bottom: 10px;
+
+        .search-box {
+            width: 50vw;
+            @include flex-container;
+
+            .custom-searchbar {
+                @include search-bar-styles;
+
+                @media screen and (max-width: 900px) {
+                    height: 35px;
+                }
+
+                @media screen and (max-width: 500px) {
+                    width: 100%;
+                }
+            }
+
+            button {
+                @include button-styles;
+
+                @media screen and (max-width: 900px) {
+                    height: 35px;
+                }
+            }
+
+            @media screen and (max-width: 900px) {
+                width: 80vw;
+            }
+
+            @media screen and (max-width: 500px) {
+                width: 100vw;
+            }
+        }
+
+        #add {
+            @include generic-button;
+        }
+
+        @media screen and (max-width: 500px) {
+            padding: 0 5px;
+        }
+    }
+
+    .table-container {
+        @include list-item-styles;
+        @include odd-list-item;
+        flex-wrap: nowrap;
+        overflow: auto;
+        width: 100%;
+        background-color: #dedede;
+
+        #row-header {
+            margin: 20px 0;
+            font-weight: bolder;
+
+            ion-col {
+                background-color: #8d8d8d;
+            }
+        }
+    }
+}
